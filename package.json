@@ -1,0 +1,32 @@
+{
+  "name": "surfyt-api",
+  "version": "0.1.0",
+  "description": "Module to search Youtube via the web rather than through Google Developers API",
+  "main": "index.mjs",
+  "types": "index.d.mts",
+  "module": "index.mjs",
+  "scripts": {
+    "test": "node test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DjesonPV/SurfYT-API.git"
+  },
+  "keywords": [
+    "discord",
+    "youtube",
+    "api",
+    "web",
+    "search"
+  ],
+  "author": "Djeson Pascal-Valette",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DjesonPV/SurfYT-API/issues"
+  },
+  "homepage": "https://github.com/DjesonPV/SurfYT-API#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "node-html-parser": "^5.3.3"
+  }
+}
