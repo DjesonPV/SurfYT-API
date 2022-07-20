@@ -1,7 +1,7 @@
 # SurfYT-API
 
 Youtube API without any Google API Key needed.
-Because that a web scrapper, so it use the website API.
+Because that a web scraper, so it uses the website API.
 
 ## Table of contents
 
