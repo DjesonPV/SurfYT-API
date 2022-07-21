@@ -1,4 +1,4 @@
-# ![SurfYT logo](https://djeson.letoutchaud.fr/img/SurfYT_48px.png) SurfYT-API
+# ![SurfYT logo](https://github.com/DjesonPV/Pictures-for-ReadMe/blob/main/SurfYT_48px.png?raw=true) SurfYT-API
 
 Youtube API without any Google API Key needed.
 Because that a web scraper, so it uses the website API.
