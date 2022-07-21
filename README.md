@@ -337,7 +337,7 @@ Be carefull, not setting a limit may result in a long wait.
 
 ## Notes and further development
 
-Hi, I'm Djeson, I developed this library only to use the [search function](#•-search-api) for simple searches because I didn't want to be limited to 100 search per day for my [Discord Bot](https://github.com/DjesonPV/Discord-PotatOS) and I wasn't happy with already existing libraries. To anyone using an older no-longer supported YouTube scrapping library, I wrote the six other functions.
+Hi, I'm Djeson, I developed this library only to use the [search function](#•-search-api) for simple searches because I didn't want to be limited to 100 search per day for my [Discord Bot](https://github.com/DjesonPV/Discord-PotatOS) and I wasn't happy with already existing libraries. To anyone using an older no-longer supported YouTube scraping library, I wrote the six other functions.
 
 Fun fact: it took me much much less time to write the functional code, than this documentation and comments in order to be able to work on it later.
 
