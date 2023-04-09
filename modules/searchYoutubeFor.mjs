@@ -4,7 +4,7 @@
 
 import * as Utils from "./_Utils.mjs";
 import getInitialData from "./_getInitialData.mjs";
-import Axios from "axios";
+import * as Methods from './_methods.mjs';
 import { youtubeEndpoints } from "./YouTubeEndpoints.mjs";
 import * as YTP from "./YouTubePaths.mjs";
 
@@ -115,7 +115,7 @@ export async function searchYoutubeFor(
             while ((o.items.length < limit) && o.continuationToken && o.previousContext && (o.numberOfUnfructfulPages > 0) && (o.numberOfSearchResultsSorted < max)) {
                 o.previousItemsLength = o.items.length;
 
-                const nextPageOfResults = await Axios.post(
+                const nextPageOfResults = await Methods.post(
                     Utils.fixedEncodeURI(youtubeEndpoints.nextSearch(apiKey)),
                     o.previousContext
                 );
@@ -135,6 +135,7 @@ export async function searchYoutubeFor(
                 o.previousContext.continuation = o.continuationToken;
             }
         } catch (error) {
+            console.warn(error);
             reject("Can't get data for this search");
         };
 

@@ -17,7 +17,7 @@
 /* ♣ ♣ ♣ ♣ ♣ >> SEARCH FOR > Soleil
     import { searchYoutubeFor } from "./main.mjs";
     
-    const eval1 = await searchYoutubeFor("Roméo Elvis - Soleil", {limit:5, location:"Canada",logLocationAndLanguage:true});
+    const eval1 = await searchYoutubeFor("Roméo Elvis - Soleil", {limit:5, location:"Canada", showVideos:true, logLocationAndLanguage:true});
     
     console.log(eval1);
 //*/
@@ -74,7 +74,7 @@ const eval6 = await getYoutubePlaylistContentList("https://www.youtube.com/playl
 console.log(eval6)
 //*/
 
-/* ♣ ♣ ♣ ♣ ♣ >> CHANNEL > WITH TOO MUCH SHORTS
+//* ♣ ♣ ♣ ♣ ♣ >> CHANNEL > WITH TOO MUCH SHORTS
 import { getYoutubeChannelUploadList } from "./main.mjs";
 
 //> Nozman
@@ -96,7 +96,7 @@ const eval8 = await getYoutubeChannelUploadList("https://www.youtube.com/c/Zerat
 console.log(eval8.length);
 //*/
 
-//* ♣ ♣ ♣ ♣ ♣ >> CHANNEL > WITH PLAYLIST
+/* ♣ ♣ ♣ ♣ ♣ >> CHANNEL > WITH PLAYLIST
 import { getYoutubeChannelPlaylistList } from "./main.mjs";
 
 //> PSY

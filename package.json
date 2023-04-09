@@ -1,6 +1,6 @@
 {
   "name": "surfyt-api",
-  "type":"module",
+  "type": "module",
   "version": "0.1.2",
   "description": "Module to search Youtube via the web rather than through Google Developers API",
   "main": "main.mjs",
@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/DjesonPV/SurfYT-API#readme",
   "dependencies": {
-    "axios": "^0.27.2",
     "node-html-parser": "^5.3.3"
   }
 }

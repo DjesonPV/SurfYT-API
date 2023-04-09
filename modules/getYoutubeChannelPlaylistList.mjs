@@ -2,7 +2,7 @@
 // > CHANNEL PLAYLIST
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import Axios from "axios";
+import * as Methods from './_methods.mjs';
 import getInitialData from "./_getInitialData.mjs";
 import * as Utils from "./_Utils.mjs";
 import { youtubeEndpoints } from "./YouTubeEndpoints.mjs";
@@ -86,7 +86,7 @@ export async function getYoutubeChannelPlaylistList(
             while (((o.items.length < limit) || (limit == -1)) && o.continuationToken && o.previousContext && (o.numberOfUnfructfulPages > 0)) {
                 o.previousItemsLength = o.items.length;
 
-                const nextUploadsPage = await Axios.post(
+                const nextUploadsPage = await Methods.post(
                     Utils.fixedEncodeURI(youtubeEndpoints.nextBrowse(apiKey)),
                     o.previousContext
                 );
@@ -102,7 +102,8 @@ export async function getYoutubeChannelPlaylistList(
                 o.previousContext.continuation = o.continuationToken;
             }
         } catch (error) {
-                reject("Can't get data from YouTube for Channel playlist list");
+            console.warn(error);
+            reject("Can't get data from YouTube for Channel playlist list");
         }
 
         // RETURN

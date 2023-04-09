@@ -2,7 +2,7 @@
 // > CHANNEL UPLOADS
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import Axios from "axios";
+import * as Methods from './_methods.mjs';
 import getInitialData from "./_getInitialData.mjs";
 import * as Utils from "./_Utils.mjs";
 import { youtubeEndpoints } from "./YouTubeEndpoints.mjs";
@@ -77,6 +77,8 @@ export async function getYoutubeChannelUploadList(
             const firstUploadsPage = await getInitialData(youtubeEndpoints.addLocationAndOrLanguage(youtubeEndpoints.videosOfAYoutubeChannel(youtubeLink.URL), gl, hl, '?'));
             const apiKey = firstUploadsPage.apiKey;
 
+            console.log( Utils.seekFor(firstUploadsPage.ytInitialData, "contents.twoColumnBrowseResultsRenderer.tabs.find(tabRenderer#selected).tabRenderer.content.richGridRenderer.contents[0].richItemRenderer.content"));
+
             Utils.seekFor(firstUploadsPage.ytInitialData, YTP.CHANNEL__RESULTS_CONTENTS).forEach(function (content) {
                 sortYoutubeChannelContent(content, o);
             });
@@ -95,7 +97,7 @@ export async function getYoutubeChannelUploadList(
             while (((o.items.length < limit) || (limit == -1)) && o.continuationToken && o.previousContext && (o.numberOfUnfructfulPages > 0)) {
                 o.previousItemsLength = o.items.length;
 
-                const nextUploadsPage = await Axios.post(
+                const nextUploadsPage = await Methods.post(
                     Utils.fixedEncodeURI(youtubeEndpoints.nextBrowse(apiKey)),
                     o.previousContext
                 );
@@ -111,6 +113,7 @@ export async function getYoutubeChannelUploadList(
                 o.previousContext.continuation = o.continuationToken;
             }
         } catch (error) {
+            console.warn(error);
             reject("Can't get data from YouTube for Channel upload content");
         }
 
