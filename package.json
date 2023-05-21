@@ -1,7 +1,7 @@
 {
   "name": "surfyt-api",
   "type": "module",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Module to search Youtube via the web rather than through Google Developers API",
   "main": "main.mjs",
   "types": "main.d.mts",
