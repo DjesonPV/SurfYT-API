@@ -2,9 +2,9 @@
 // > SHARED FUNCTIONS
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import { youtubeLocations } from "./AvailableLocationsOnYoutube.mjs";
-import { youtubeLanguages } from "./AvailableLanguagesOnYoutube.mjs";
-import { youtubeEndpoints } from "./YouTubeEndpoints.mjs";
+import { youtubeLocations } from "./AvailableLocationsOnYoutube.js";
+import { youtubeLanguages } from "./AvailableLanguagesOnYoutube.js";
+import { youtubeEndpoints } from "./YouTubeEndpoints.js";
 
 export function fixedEncodeURI(str) {
     return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');    // According to Mozilla recomandation about https://tools.ietf.org/html/rfc3986

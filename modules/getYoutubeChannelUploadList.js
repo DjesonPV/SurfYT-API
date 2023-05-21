@@ -2,15 +2,15 @@
 // > CHANNEL UPLOADS
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import * as Methods from './_methods.mjs';
-import getInitialData from "./_getInitialData.mjs";
-import * as Utils from "./_Utils.mjs";
-import { youtubeEndpoints } from "./YouTubeEndpoints.mjs";
-import * as YTP from "./YouTubePaths.mjs";
+import * as Methods from './_methods.js';
+import getInitialData from "./_getInitialData.js";
+import * as Utils from "./_Utils.js";
+import { youtubeEndpoints } from "./YouTubeEndpoints.js";
+import * as YTP from "./YouTubePaths.js";
 
 // imports for documentation purpose
-import { youtubeLocations } from "./AvailableLocationsOnYoutube.mjs";
-import { youtubeLanguages } from "./AvailableLanguagesOnYoutube.mjs";
+import { youtubeLocations } from "./AvailableLocationsOnYoutube.js";
+import { youtubeLanguages } from "./AvailableLanguagesOnYoutube.js";
 
 /** Get YouTube Channel upload content URL list 
  * 
@@ -77,7 +77,7 @@ export async function getYoutubeChannelUploadList(
             const firstUploadsPage = await getInitialData(youtubeEndpoints.addLocationAndOrLanguage(youtubeEndpoints.videosOfAYoutubeChannel(youtubeLink.URL), gl, hl, '?'));
             const apiKey = firstUploadsPage.apiKey;
 
-            console.log( Utils.seekFor(firstUploadsPage.ytInitialData, "contents.twoColumnBrowseResultsRenderer.tabs.find(tabRenderer#selected).tabRenderer.content.richGridRenderer.contents[0].richItemRenderer.content"));
+            //console.log( Utils.seekFor(firstUploadsPage.ytInitialData, "contents.twoColumnBrowseResultsRenderer.tabs.find(tabRenderer#selected).tabRenderer.content.richGridRenderer.contents[0].richItemRenderer.content"));
 
             Utils.seekFor(firstUploadsPage.ytInitialData, YTP.CHANNEL__RESULTS_CONTENTS).forEach(function (content) {
                 sortYoutubeChannelContent(content, o);

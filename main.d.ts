@@ -2,8 +2,8 @@
 // > MAIN
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import { youtubeLanguages } from "./modules/AvailableLanguagesOnYoutube.mjs";
-import { youtubeLocations } from "./modules/AvailableLocationsOnYoutube.mjs";
+import { youtubeLanguages } from "./modules/AvailableLanguagesOnYoutube.js";
+import { youtubeLocations } from "./modules/AvailableLocationsOnYoutube.js";
 
 /** Allows you to search for queries as if you were typing in https://www.youtube.com search bar.
  * 

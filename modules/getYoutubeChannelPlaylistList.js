@@ -2,15 +2,15 @@
 // > CHANNEL PLAYLIST
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import * as Methods from './_methods.mjs';
-import getInitialData from "./_getInitialData.mjs";
-import * as Utils from "./_Utils.mjs";
-import { youtubeEndpoints } from "./YouTubeEndpoints.mjs";
-import * as YTP from "./YouTubePaths.mjs";
+import * as Methods from './_methods.js';
+import getInitialData from "./_getInitialData.js";
+import * as Utils from "./_Utils.js";
+import { youtubeEndpoints } from "./YouTubeEndpoints.js";
+import * as YTP from "./YouTubePaths.js";
 
 // imports for documentation purpose
-import { youtubeLocations } from "./AvailableLocationsOnYoutube.mjs";
-import { youtubeLanguages } from "./AvailableLanguagesOnYoutube.mjs";
+import { youtubeLocations } from "./AvailableLocationsOnYoutube.js";
+import { youtubeLanguages } from "./AvailableLanguagesOnYoutube.js";
 
 /** Get YouTube Channel playlist URL list 
  * 

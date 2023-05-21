@@ -2,7 +2,7 @@
 // > YOUTUBE URL FACTORY
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import * as Utils from "./_Utils.mjs";
+import * as Utils from "./_Utils.js";
 
 /** YouTube website URL*/
 const youtubeEndpoint = `https://www.youtube.com`;
