@@ -2,15 +2,15 @@
 // > SEARCH YOUTUBE FOR
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import * as Utils from "./_Utils.mjs";
-import getInitialData from "./_getInitialData.mjs";
-import * as Methods from './_methods.mjs';
-import { youtubeEndpoints } from "./YouTubeEndpoints.mjs";
-import * as YTP from "./YouTubePaths.mjs";
+import * as Utils from "./_Utils.js";
+import getInitialData from "./_getInitialData.js";
+import * as Methods from './_methods.js';
+import { youtubeEndpoints } from "./YouTubeEndpoints.js";
+import * as YTP from "./YouTubePaths.js";
 
 // imports for documentation purpose
-import { youtubeLocations } from "./AvailableLocationsOnYoutube.mjs";
-import { youtubeLanguages } from "./AvailableLanguagesOnYoutube.mjs";
+import { youtubeLocations } from "./AvailableLocationsOnYoutube.js";
+import { youtubeLanguages } from "./AvailableLanguagesOnYoutube.js";
 
 /** Allows you to search for queries as if you were typing in https://www.youtube.com search bar.
  * 

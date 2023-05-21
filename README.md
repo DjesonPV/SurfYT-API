@@ -58,8 +58,8 @@ Their default values are evaluated as:
 
 | parameter       | type            | default value    |  notes          |
 |:----------------|:---------------:|:----------------:|:----------------|
-| `location`      | `string`        | `undefined`      |  Will be chosen by YouTube based on IP location. Check the file `./modules/AvailableLocationsOnYoutube.mjs` for valid values |
-| `language`      | `string`        | `undefined`      |  Will be chosen by YouTube based on IP location. Check the file  `./modules/AvailableLanguagesOnYoutube.mjs` for valid values |
+| `location`      | `string`        | `undefined`      |  Will be chosen by YouTube based on IP location. Check the file `./modules/AvailableLocationsOnYoutube.js` for valid values |
+| `language`      | `string`        | `undefined`      |  Will be chosen by YouTube based on IP location. Check the file  `./modules/AvailableLanguagesOnYoutube.js` for valid values |
 | `bypassLocationAndLanguageChecking` | `boolean`  | `false` |           |
 | `logLocationAndLanguage`            | `boolean`  | `false` |           |
 

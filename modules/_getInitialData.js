@@ -2,9 +2,9 @@
 // > GET YT_INITIAL_DATA
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import * as Methods from './_methods.mjs';
+import * as Methods from './_methods.js';
 import * as HTML from "node-html-parser";
-import * as Utils from "./_Utils.mjs";
+import * as Utils from "./_Utils.js";
 
 export default async function getInitialData(url) {
     let context = null;
