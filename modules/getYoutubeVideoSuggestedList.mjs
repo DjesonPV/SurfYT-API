@@ -2,7 +2,7 @@
 // > VIDEO SUGGESTED CONTENT
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import Axios from "axios";
+import * as Methods from './_methods.mjs';
 import getInitialData from "./_getInitialData.mjs";
 import * as Utils from "./_Utils.mjs";
 import { youtubeEndpoints } from "./YouTubeEndpoints.mjs";
@@ -97,7 +97,7 @@ export async function getYoutubeVideoSuggestedList(
             while (((o.items.length < limit) || (limit == -1)) && o.continuationToken && o.previousContext && (o.numberOfUnfructfulPages > 0)) {
                 o.previousItemsLength = o.items.length;
 
-                const nextSuggestedPage = await Axios.post(
+                const nextSuggestedPage = await Methods.post(
                     Utils.fixedEncodeURI(youtubeEndpoints.nextSuggested(apiKey)),
                     o.previousContext
                 );
@@ -115,6 +115,7 @@ export async function getYoutubeVideoSuggestedList(
             }
 
         } catch (error) {
+            console.warn(error);
             reject("Can't get data from YouTube for Suggestion List");
         };
 

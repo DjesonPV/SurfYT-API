@@ -18,7 +18,7 @@ export function fixedEncodeURIComponent(str) {
 // It seems like YouTube only encode special "code harming" characters for search queries 
 // and not the every char that isn't unicode like encodeURIComponent.
 // I'm aware of this by trial and error, only because I tried French queries and was given wrong results.
-// The HTML link will not give the same result as the Axios request, as if somewhere non 
+// The HTML link will not give the same result as the fetch request, as if somewhere non 
 // special encoded chars aren't decoded.
 export function youtubeEncodeSearch(str) {
     return str
@@ -123,6 +123,12 @@ export function seekFor(object, path) {
             let sps = segment.split('[');
             segment = sps[0];
             key = sps[1].slice(0, -1);
+        }
+        if (segment.split('(')[0] === 'find') {
+            const findPath = segment.split('(')[1].slice(0,-1).replace('#','.');
+            currentObject = currentObject.find(item => {return seekFor(item, findPath);});
+            key = null;
+            segment = null;
         }
         if ((segment !== null) && (currentObject != undefined)) currentObject = currentObject[segment];
         if ((key !== null) && (currentObject != undefined)) currentObject = currentObject[key];

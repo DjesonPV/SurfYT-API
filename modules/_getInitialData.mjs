@@ -2,7 +2,7 @@
 // > GET YT_INITIAL_DATA
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import Axios from "axios";
+import * as Methods from './_methods.mjs';
 import * as HTML from "node-html-parser";
 import * as Utils from "./_Utils.mjs";
 
@@ -12,15 +12,13 @@ export default async function getInitialData(url) {
     let ytInitialData = null;
 
     try {
-        const page = await Axios.get(Utils.fixedEncodeURI(url));
-
-        const root = HTML.parse(page.data);
+        const html = HTML.parse(await Methods.getHTML(Utils.fixedEncodeURI(url)));
 
         let rawInitialData;
         let rawContextData;
 
         // body
-        root.childNodes[1].childNodes[1].querySelectorAll('script').forEach(function (HTMLElement) {
+        html.childNodes[1].childNodes[1].querySelectorAll('script').forEach(function (HTMLElement) {
             if ((HTMLElement.childNodes.length == 1) && (HTMLElement.childNodes[0] instanceof HTML.TextNode) && (HTMLElement.childNodes[0]._rawText.startsWith(`var ytInitialData = `))) {
                 rawInitialData = HTMLElement.childNodes[0]._rawText;
             }
@@ -29,7 +27,7 @@ export default async function getInitialData(url) {
         ytInitialData = JSON.parse(rawInitialData.slice(20, -1));
 
         // header
-        root.childNodes[1].childNodes[0].querySelectorAll('script').forEach(function (HTMLElement) {
+        html.childNodes[1].childNodes[0].querySelectorAll('script').forEach(function (HTMLElement) {
 
             if ((HTMLElement.childNodes.length == 1) && (HTMLElement.childNodes[0] instanceof HTML.TextNode) && (HTMLElement.childNodes[0]._rawText.startsWith(`(function() {window.ytplayer={};`))) {
                 rawContextData = HTMLElement.childNodes[0]._rawText;
@@ -44,6 +42,7 @@ export default async function getInitialData(url) {
 
     }
     catch (error) {
+        console.warn(error);
     }
 
     return { ytInitialData: await ytInitialData, context: await context, apiKey: apiKey };

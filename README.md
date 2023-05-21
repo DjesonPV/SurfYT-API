@@ -3,6 +3,11 @@
 Youtube API without any Google API Key needed.
 Because that a web scraper, so it uses the website API.
 
+---
+> **Warning**
+> Homepage List, Trending Lists, Video suggested content List, Playlist content List, Channel uploads List, Channel playlists List, could not work as YouTube keep changing its GUI definition. As I only use the search function and it appears only I use this library. I will fix that later.
+---
+
 ## Table of contents
 
 1. [Introduction](#introduction)

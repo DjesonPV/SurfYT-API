@@ -2,7 +2,7 @@
 // > PLAYLIST
 //  • • • • • • • • • • • • • • • • • • • • • • • •
 
-import Axios from "axios";
+import * as Methods from './_methods.mjs';
 import getInitialData from "./_getInitialData.mjs";
 import * as Utils from "./_Utils.mjs";
 import { youtubeEndpoints } from "./YouTubeEndpoints.mjs";
@@ -97,7 +97,7 @@ export async function getYoutubePlaylistContentList(
             while (((o.items.length < limit) || (limit == -1)) && o.continuationToken && o.previousContext && (o.numberOfUnfructfulPages > 0)) {
                 o.previousItemsLength = o.items.length;
 
-                const nextPageOfPlaylist = await Axios.post(
+                const nextPageOfPlaylist = await Methods.post(
                     Utils.fixedEncodeURI(youtubeEndpoints.nextBrowse(apiKey)),
                     o.previousContext
                 );
@@ -113,6 +113,7 @@ export async function getYoutubePlaylistContentList(
                 o.previousContext.continuation = o.continuationToken;
             }
         } catch (error) {
+            console.warn(error);
             reject("Can't get data from YouTube for Playlist Content");
         }
 
