@@ -4,7 +4,7 @@
   "version": "0.2.3",
   "description": "Module to search Youtube via the web rather than through Google Developers API",
   "main": "main.js",
-  "types": "main.d.mts",
+  "types": "main.d.ts",
   "module": "main.js",
   "scripts": {
     "test": "node test.js"
