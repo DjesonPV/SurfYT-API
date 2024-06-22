@@ -6,7 +6,25 @@ import * as Methods from './_methods.js';
 import * as HTML from "node-html-parser";
 import * as Utils from "./_Utils.js";
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export default async function getInitialData(url) {
+    let numberOfTry = 5;
+
+    while(numberOfTry--) {
+
+        const data = await tryToGetInitialData(url);
+
+        if ((data.ytInitialData != null) && (data.context != null) && (data.apiKey != null)) return data;
+        
+        await sleep(100);
+    }
+    throw "initial data not found";
+}
+
+async function tryToGetInitialData(url) {
     let context = null;
     let apiKey = null;
     let ytInitialData = null;
@@ -14,30 +32,29 @@ export default async function getInitialData(url) {
     try {
         const html = HTML.parse(await Methods.getHTML(Utils.fixedEncodeURI(url)));
 
-        let rawInitialData;
-        let rawContextData;
+        const body = html.querySelector('body');
+        const head = html.querySelector('head');
 
-        // body
-        html.childNodes[1].childNodes[1].querySelectorAll('script').forEach(function (HTMLElement) {
-            if ((HTMLElement.childNodes.length == 1) && (HTMLElement.childNodes[0] instanceof HTML.TextNode) && (HTMLElement.childNodes[0]._rawText.startsWith(`var ytInitialData = `))) {
-                rawInitialData = HTMLElement.childNodes[0]._rawText;
-            }
+        const bodyScripts = body.querySelectorAll('script');
+        const headScripts = head.querySelectorAll('script');
+
+        const rawInitialData = bodyScripts.find(script => {
+            return script.rawText.startsWith(`var ytInitialData = `);
         });
 
-        ytInitialData = JSON.parse(rawInitialData.slice(20, -1));
+        try {
+            ytInitialData = JSON.parse(rawInitialData.rawText.slice(20, -1));
+        } catch (err) {
+        };
 
-        // header
-        html.childNodes[1].childNodes[0].querySelectorAll('script').forEach(function (HTMLElement) {
-
-            if ((HTMLElement.childNodes.length == 1) && (HTMLElement.childNodes[0] instanceof HTML.TextNode) && (HTMLElement.childNodes[0]._rawText.startsWith(`(function() {window.ytplayer={};`))) {
-                rawContextData = HTMLElement.childNodes[0]._rawText;
-            }
+        const rawContextData = headScripts.find(script => {
+            return script.rawText.startsWith(`(function() {window.ytplayer={};`);
         });
 
-        const matchForContext = await rawContextData.match(/"INNERTUBE_CONTEXT":(.*?),"INNERTUBE_CONTEXT_CLIENT_NAME"/);
-        if (matchForContext) context = await JSON.parse(matchForContext[1]);
+        const matchForContext = rawContextData.rawText.match(/"INNERTUBE_CONTEXT":(.*?),"INNERTUBE_CONTEXT_CLIENT_NAME"/);
+        if (matchForContext) context = JSON.parse(matchForContext[1]);
 
-        const matchForApiKey = await rawContextData.match(/"innertubeApiKey":"(.*?)",/);
+        const matchForApiKey = rawContextData.rawText.match(/"innertubeApiKey":"(.*?)",/);
         if (matchForApiKey) apiKey = `${matchForApiKey[1]}`;
 
     }
@@ -45,5 +62,5 @@ export default async function getInitialData(url) {
         console.warn(error);
     }
 
-    return { ytInitialData: await ytInitialData, context: await context, apiKey: apiKey };
+    return { ytInitialData: ytInitialData, context: context, apiKey: apiKey };
 }
