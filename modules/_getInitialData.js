@@ -32,13 +32,13 @@ async function tryToGetInitialData(url) {
     try {
         const html = HTML.parse(await Methods.getHTML(Utils.fixedEncodeURI(url)));
 
-        const body = html.querySelector('body');
+        //const body = html.querySelector('body');
         const head = html.querySelector('head');
 
-        const bodyScripts = body.querySelectorAll('script');
+        //const bodyScripts = body.querySelectorAll('script');
         const headScripts = head.querySelectorAll('script');
 
-        const rawInitialData = bodyScripts.find(script => {
+        const rawInitialData = headScripts.find(script => {
             return script.rawText.startsWith(`var ytInitialData = `);
         });
 
